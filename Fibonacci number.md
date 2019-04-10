@@ -56,6 +56,15 @@ def F(n):
     return fib(n)[0]
 ```
 
+## 也可以用字典暂时存储递归中的值
+```python
+memo = {0:0, 1:1}
+def fib2(n):
+    if not n in memo:
+        memo[n] = fib2(n-1)+fib2(n-2)
+    return memo[n]
+```
+
 # 迭代完成
 ## for-loop完成
 ```python
