@@ -30,7 +30,7 @@ Fib() 每次调用时, 都会再调用两次Fib(). 所以这种写法的复杂�
 
 ```
     f(0)    f(1)    f(2)    f(3)    f(4)    f(5)    f(6)    f(7)    f(8)    ...     f(n)
-    (0,1)   (1,1)   (1,2)   (2,3)   (3,5)   (5,8)   (8,13)  (13,21) (21,34) (...)  (an, an+1
+    (0,1)   (1,1)   (1,2)   (2,3)   (3,5)   (5,8)   (8,13)  (13,21) (21,34) (...)  (an, an+1)
     /   \    / \     / \
    a0   a1  a1  a2 a2   a3  ................................................
    注: a0表示斐波那契数列第0项,a1 表示第1项,依次类推, an表示第n项,an+1表示第 n+1项
@@ -46,7 +46,9 @@ def fib(n):
         return (b, a+b)
 ```
 ### 调用fib(n)过程图示
-<img src= 'https://github.com/shawshanks/Data-Structure-and-Algrithm/blob/master/image/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8.png' width= '50%'>
+注: 绿线表示从上往下的调用过程
+黄线表示从下往上的返回过程
+<img src= 'https://github.com/shawshanks/Data-Structure-and-Algrithm/blob/master/image/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8.png' width= '100%'>
 
 ### 包装调用,F(n)返回第n项的值
 如果我们想要返回一个相应的值,只需再调用`fib()`的结果就行了.可以写成以下两种形式:
