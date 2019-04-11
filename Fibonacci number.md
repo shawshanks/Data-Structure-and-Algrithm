@@ -46,6 +46,7 @@ def fib(n):
         return (b, a+b)
 ```
 ### 调用fib(n)过程图示
+<img src= 'https://www.pornhub.com/view_video.php?viewkey=ph5c3152e0577f9' width= '50%'>
 
 ### 包装调用,F(n)返回第n项的值
 如果我们想要返回一个相应的值,只需再调用`fib()`的结果就行了.可以写成以下两种形式:
