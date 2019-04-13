@@ -14,7 +14,7 @@ if b = a+1, (a+b)//2 = (a+a+1)//2 = (2a+1)//2 = a   即当 b=a+1时, mid=a
 ### 递归版本
 ```python
 def binary_search(list,target,low,high):    # low初始值默认为0,high初始值默认为list最后一位元素索引,即len(list)-1
-    if low > high:
+    if low > high:  # low <= high都是正常情况
         return "no match" # 序列中没有和target匹配的值
     mid = (low + high)//2   # 如果 high = low +1 则 mid = low
     if target == list[mid]:
