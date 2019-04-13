@@ -1,7 +1,7 @@
 <img src = "https://github.com/shawshanks/Data-Structure-and-Algrithm/blob/master/image/mid.png" width = '30%'>
 
 由上面的分析可知:  
-因为 mid = (low+high)//2,  low <= high
+因为 mid = (low+high)//2,  low <= high  
 所以       low <= mid <= high
 
 ### 递归版本
