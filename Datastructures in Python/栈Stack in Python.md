@@ -1,0 +1,1 @@
+[栈Stack in Python](https://github.com/shawshanks/Programming_exercise_problems/blob/master/%E3%80%8AData%20Structure%20%26%20Algorithm%20in%20Python%20%E3%80%8B%E4%B8%AD%E7%9A%84%E7%AE%97%E6%B3%95/6.1%20stack%20%E6%A0%88.md)
