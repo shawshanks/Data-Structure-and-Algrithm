@@ -1,8 +1,14 @@
+<img src = "https://github.com/shawshanks/Data-Structure-and-Algrithm/blob/master/image/mid.png" width = '30%'>
+
+由上面的分析可知:  
+因为 mid = (low+high)//2,  low <= high
+所以       low <= mid <= high
+
 ### 递归版本
 ```python
 def binary_search(list,target,low,high):    # low初始值默认为0,high初始值默认为list最后一位元素索引,即len(list)-1
     if low > high:
-        return "no math" # 序列中没有和target匹配的值
+        return "no match" # 序列中没有和target匹配的值
     mid = (low + high)//2
     if target == list[mid]:
         return mid      # target和list[mid]处的值匹配
