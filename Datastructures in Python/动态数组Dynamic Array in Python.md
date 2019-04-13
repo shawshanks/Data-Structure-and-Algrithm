@@ -1,0 +1,1 @@
+[动态数组Dynamic Array in Python.md](https://github.com/shawshanks/Programming_exercise_problems/blob/master/%E3%80%8AData%20Structure%20%26%20Algorithm%20in%20Python%20%E3%80%8B%E4%B8%AD%E7%9A%84%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E6%95%B0%E7%BB%84%E5%8F%8A%E5%9D%87%E6%91%8A%E5%88%86%E6%9E%90.md)
