@@ -26,7 +26,7 @@ class Queue:
         return len(self._data)
 
     def enqueue(self, e):
-        self._data.append(e)
+        self._data.insert(0, e)
 
     def dequeue(self):
         if len(self._data) > 0:
