@@ -1,6 +1,6 @@
 """
 Data: 2019.5.4
-Author: Yang good man
+Author: Yang
 
 > 一切的一切,都又回到原点
 
@@ -49,7 +49,7 @@ class SingleLinkedList_Squence:
         一个链表诞生时,一切即为None或0
         """
         self._head = None  # head tag
-        self._tail = None  # tail tag
+        self._tail = None  # tail tag 为了append()操作开销为O(1)
         self._size = 0  # 常数时间内实现 len() , 类似于Python list的len()实现
 
     def __len__(self):
@@ -57,18 +57,21 @@ class SingleLinkedList_Squence:
 
     def add(self, item):
         """
-        一切开头难, 第一个node总是特殊的,它既为head,亦为tail.
-
-        而后增加node 最简单最直观的方式:
-        1. 将node指向原来链表的head (欢迎加入集体)
-        2. 带上head的帽子 (将head指向 此node)
-
-        别忘了你又长大了一岁哦(长度+1)
-        """
+        Goal:
+            用于从头部方向添加新的节点.
+        Description:
+            1. 当链表为空时, 添加 new_node. 此时这是链表中唯一的一个节点,
+            它既是头部,亦是尾部
+            2. 当链表中有至一个节点时,添加 new_node. 要保持链表的顺序性,那么应该比较
+                后,把这个new_node 插入合适的位置.
+                2.1
+                2.2 new_node 晋升为新的 头部
+            3. size + 1
+            """
         new_node = self.Node(item)
         if self._size == 0:
-            self._head = new_node
             self._tail = new_node
+            self._head = new_node
         else:
             new_node.next = self._head
             self._head = new_node
@@ -76,16 +79,16 @@ class SingleLinkedList_Squence:
 
     def append(self, item):
         """
-        一切开头难, 第一个node总是特殊的,它既为head,亦为tail.
-
-        而后在尾部增加节点,这意味着
-        1. 这个节点是 tail, 而tail节点 是指向None的(node.next=None). Node 诞生时
-        就满足要求,不必改变.
-        2. 要把原来的tail node指向这个 现在这个尾节点
-        3. 1和2 完成后,这个node成为了实质上的尾节点. 但是还是要带上tail的帽子,向大家
-            宣布此node是tail.
-
-        你又长大了一岁(长度+1)
+        Goal: 从链表尾部添加新的节点.
+        Description:
+            1. 当链表为空时, 添加 new_node. 此时这是链表中唯一的一个节点,
+            它既是头部,亦是尾部
+            2. 当链表中有至一个节点时,添加 new_node.
+                2.1 原来的尾部节点指向 new_node
+                2.2 链表现在的 尾部节点 是这个 new_node
+                2.3 尾部节点应该指向 None. 但是节点 诞生时自动指向None, 所以不必
+                    再多费功夫.
+            3. size + 1
         """
         new_node = self.Node(item)
         if self._size == 0:
@@ -164,18 +167,52 @@ class SingleLinkedList_Squence:
             self._size += 1
 
     def remove(self, item):
-        start = self._head
-        previous = None
-        for _ in range(self._size):
-            if start.data != item:
-                previous = start
-                start = start.next
-                if start is None:
-                    print("Remove faild: no such item")
-            else:
-                previous.next = start.next
-                self._size -= 1
-                break
+        """
+        Goal: 移除链表中的某一个值
+
+        Description:
+            1. 当链表为空时, 不能移除
+            2. 当链表只有一个值时, 移除这个这个值, 链表为空, 头尾标记都指向 None
+            3. 当链表长度多于一个值: 移除 有以下三种情况:
+                3.1 移除的值是头部节点
+                    3.1.1 原来的头部节点指向None
+                    3.2.2 头部指向 原来头部节点的下一节点
+                3.2 移除的值是尾部节点
+                    3.2.1 原来尾部节点的上一节点指向None
+                    3.2.2 尾部指向 原来尾部节点的上一节点
+                3.3 中间节点
+
+        """
+        if self._size == 0:
+            return "Remove failed: Linked List is empty"
+        if self._size == 1 and self._head.data == item:
+            self._tail = None
+            self._head = None
+            self._size -= 1
+        if self._size >= 2:
+            start = self._head
+            for i in range(self._size):
+                if start.data != item:
+                    previous = start
+                    start = start.next
+                else:
+                    if i == 0:
+                        temp = self._head.next
+                        start.next = None
+                        self._head = temp
+                        self._size -= 1
+                        return None
+                    elif i == self._size - 1:
+                        previous.next = None
+                        self._tail = previous
+                        self._size -= 1
+                        return None
+                    else:
+                        previous.next = start.next
+                        start._next = None
+                        self._size -= 1
+                        return None
+        return "Remove failed: No such item"
 
     def delete(self, index):
         """
@@ -196,6 +233,7 @@ class SingleLinkedList_Squence:
 
         self._size -= 1
 
+
 if __name__ == '__main__':
     L = SingleLinkedList_Squence()
     L.add(10)       # 10 -> None
@@ -204,22 +242,18 @@ if __name__ == '__main__':
     L.add(40)       # 40 -> 30 -> 20 -> 10 -> None
     L.append(5)     # 40 -> 30 -> 20 -> 10 -> 5 -> None
     L.append(4)     # 40 -> 30 -> 20 -> 10 -> 5 -> 4 -> None
-    print(len(L))
-    print(L._head.data)
-    print(L.search(30))
-    print(L.index(30))
-    print(L.index(4))
-    L.remove(10)    # 40 -> 30 -> 20 ->  5 -> 4 -> None
-    print(L.search(10))
-    print(len(L))
-    L.remove(100)
-    print(L.search(5))
-    L.insert(100, 2)     # 40 -> 30 -> 100 -> 20 ->  5 -> 4 -> None
-    print(L.index_to_value(2))  # return 100
-    print(L.index_to_value(1))  # return 30
-    print(L.index_to_value(3))  # return 20
-    L.delete(2)          # 40 -> 30 -> 20 ->  5 -> 4 -> None
-    print(L.index_to_value(2))  # return 20
+    print(len(L))   # return 6
+    print(L._head.data)  # return 40
+    print(L.search(30))  # return True
+    print(L.index(30))   # return  1
+    print(L.index(4))    # return  5
+    L.remove(40)        # 30 -> 20 -> 10 -> 5 -> 4 -> None
+    print(L._head.data)  # return 30
+    print(L.search(10))  # return True
+    print(len(L))        # return 5
+    print(L.remove(100000))        # return Remove failed : no such item
+    print(L.search(5))   # return True
+
 
 
 
