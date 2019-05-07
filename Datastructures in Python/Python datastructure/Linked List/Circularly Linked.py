@@ -16,10 +16,12 @@ class CircularLinkedList:
     2. 第二个10在这里指的是 data 为5 的节点又指向了链表的开头 data为10的节点. 从而
     形成闭合环形链表
     """
+    # ----------- Nested Node class------------------------------------
     class Node:
         def __init__(self, data, next=None):
             self.data = data
             self.next = next
+    # ------------ Noested Node class end -----------------------------
 
     def __init__(self):
         """
@@ -143,14 +145,18 @@ class CircularLinkedList:
             return "Remove failed: The linked list is empty."
         elif self.size == 1 and self.cur.data == item:
             self.cur = None
+            self.size -= 1
             return None
         elif self.size == 2:
             if self.cur.data == item:
                 previous_node = self.cur.next
                 self.cur.next = None
-            previous_node.next = None
-            self.cur = previous_node
+            else:
+                previous_node.next = None
+                self.cur = previous_node
+            self.size -= 1
             return None
+
         elif self.size >= 3:
             previous = self.find_preivous()
             start = self.cur
@@ -163,6 +169,7 @@ class CircularLinkedList:
                     start.next = None
                     if i == 0:
                         self.cur = previous
+                    self.size -= 1
                     return None
         return "Remove failed: The linked list has no such item"
 
