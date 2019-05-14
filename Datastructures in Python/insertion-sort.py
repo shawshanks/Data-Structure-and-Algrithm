@@ -1,3 +1,4 @@
+
 # Python 风格
 def insert_sort_Pythonic(array):
     for i in range(1, len(array)):
@@ -26,7 +27,7 @@ def insert_sort(array):
             i -= 1
         array[i] = cur  # 因为下一个值不小,而这个值小于 cur,所以是array[i] =cur
 
-
+      
 if __name__ == '__main__':
     array = [54, 26, 93, 17, 77, 31, 44, 55, 20]
     insert_sort(array)
